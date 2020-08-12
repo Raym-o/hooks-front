@@ -8,6 +8,7 @@ export const userService = {
   getAll,
   getById,
   update,
+  updateAddress,
   delete: _delete
 };
 
@@ -71,6 +72,16 @@ function update(user) {
   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
 }
 
+function updateAddress(user) {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  };
+
+  return fetch(`${config.apiUrl}/updateaddress`, requestOptions).then(handleResponse);
+}
+
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
   const requestOptions = {
@@ -79,16 +90,6 @@ function _delete(id) {
   };
 
   return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
-
-function updateUserAddress(user) {
-  const requestOptions = {
-    method: 'PUT',
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(user)
-  };
-
-  return fetch(`${config.apiUrl}/users/${user.id}/updateaddress`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

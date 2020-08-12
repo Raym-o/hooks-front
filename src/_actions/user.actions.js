@@ -9,7 +9,8 @@ export const userActions = {
   register,
   getAll,
   delete: _delete,
-  update
+  update,
+  updateAddress
 };
 
 function login(username, password) {
@@ -116,4 +117,27 @@ function update(user) {
   function request(user) { return { type: userConstants.UPDATE_REQUEST, user } }
   function success(user) { return { type: userConstants.UPDATE_SUCCESS, user } }
   function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }
+}
+
+function updateAddress(user) {
+  return dispatch => {
+    dispatch(request(user));
+
+    userService.updateAddress(user)
+      .then(
+        user => {
+          dispatch(success());
+          history.push('/');
+          dispatch(alertActions.success('Address updated'));
+        },
+        error => {
+          dispatch(failure(error.toString()));
+          dispatch(alertActions.error(error.toString()));
+        }
+      );
+  };
+
+  function request(user) { return { type: userConstants.UPDATE_ADDRESS_REQUEST, user } }
+  function success(user) { return { type: userConstants.UPDATE_ADDRESS_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.UPDATE_ADDRESS_FAILURE, error } }
 }
