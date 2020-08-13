@@ -5,11 +5,14 @@ import { registration } from './registration.reducer';
 import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 
+import { updateAddress } from './updateaddress.reducer';
+
 const rootReducer = combineReducers({
   authentication,
   registration,
   users,
-  alert
+  alert,
+  updateAddress
 });
 
 export default rootReducer;
