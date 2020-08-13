@@ -125,9 +125,9 @@ function updateAddress(user) {
 
     userService.updateAddress(user)
       .then(
-        user => {
-          dispatch(success());
-          history.push('/');
+        newUser => {
+          dispatch(success(newUser));
+          history.push('/profile');
           dispatch(alertActions.success('Address updated'));
         },
         error => {

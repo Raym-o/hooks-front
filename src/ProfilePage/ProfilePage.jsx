@@ -35,7 +35,7 @@ function ProfilePage() {
         </ul>
         :
         user && editingAddress ?
-          <UpdateForm user={user} toggleState={editingAddress} />
+          <UpdateForm toggle={toggleEditingAddress} user={user} toggleState={editingAddress} />
           :
           <p>No Address Currently Listed</p>
       }
