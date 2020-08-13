@@ -24,7 +24,13 @@ function ProfilePage() {
       </ul>
 
       <h2>Address</h2>
-      <button onClick={toggleEditingAddress}>{user && user.address ? "Edit" : "Add"}</button>
+      <button onClick={toggleEditingAddress}>
+        {user && user.address && !editingAddress ? "Edit"
+          :
+          user && !user.address && !editingAddress ? "Add"
+            :
+            "Cancel"
+        }</button>
       {user && user.address && !editingAddress ?
         <ul>
           <li>Line 1: {user.address.line_1}</li>
