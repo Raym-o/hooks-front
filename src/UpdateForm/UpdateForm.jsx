@@ -14,6 +14,8 @@ function UpdateForm(props) {
     province_id: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  // const line_1 = ''; const line_2 = ''; const city = ''; const postal_code = ''; const province_id = '';
+
   const { line_1, line_2, city, postal_code, province_id } = inputs;
   const address = props.user.address;
 
@@ -39,12 +41,13 @@ function UpdateForm(props) {
 
   useEffect(() => {
     if (props.toggleState) {
-      setInputs(address);
+      if (!!address) setInputs(address);
     }
   }, [])
 
 
   return (
+
     <div className="col-lg-8 offset-lg-2">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
