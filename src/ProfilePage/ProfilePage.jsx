@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { UserUpdateForm } from '../UserUpdateForm';
 import { UpdateForm } from '../UpdateForm';
 
 function ProfilePage() {
+  const [editingUser, setEditingUser] = useState(false);
   const [editingAddress, setEditingAddress] = useState(false);
   const user = useSelector(state => state.authentication.user);
 
+  function toggleEditingUser() {
+    setEditingUser(!editingUser);
+  }
   function toggleEditingAddress() {
     setEditingAddress(!editingAddress);
   }
@@ -16,13 +21,22 @@ function ProfilePage() {
   return (
     <div className="container">
       <h1>Profile</h1>
-      <button>Edit</button>
-      <ul>
-        <li>First Name: {user.f_name}</li>
-        <li>Last Name: {user.l_name}</li>
-        <li>Username: {user.username}</li>
-      </ul>
-
+      <button onClick={toggleEditingUser}>
+        {editingUser ?
+          "Cancel"
+          :
+          "Edit"}
+      </button>
+      {!editingUser ?
+        <ul>
+          <li>First Name: {user.f_name}</li>
+          <li>Last Name: {user.l_name}</li>
+          <li>Username: {user.username}</li>
+          <li>Email: {user.email}</li>
+        </ul>
+        :
+        <UserUpdateForm toggle={toggleEditingUser} user={user} toggleState={editingUser} />
+      }
       <h2>Address</h2>
       <button onClick={toggleEditingAddress}>
         {user && user.address && !editingAddress ? "Edit"

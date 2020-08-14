@@ -105,7 +105,7 @@ function update(user) {
         user => {
           dispatch(success());
           history.push('/profile');
-          dispatch(alertActions.success('Address updated'));
+          dispatch(alertActions.success('Profile updated'));
         },
         error => {
           dispatch(failure(error.toString()));
