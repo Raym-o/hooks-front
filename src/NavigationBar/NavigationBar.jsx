@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import banner from '../../public/images/banner.jpg';
-import UserIcon from '../../public/Icons/UserIcon';
+
+import { UserWidget } from '../_components';
 
 const listStyle = {
   marginBottom: "0px"
@@ -23,10 +24,7 @@ function NavigationBar() {
           <h1>Raymo E-Commerce Store </h1>
         </div>
         <div className="d-inline p-2">
-          <Link className="nav-link" to="/login">
-            <UserIcon />
-            {user ? user.username : "Login"}
-          </Link>
+          <UserWidget />
         </div>
       </div>
       <ul className="nav nav-tabs" style={listStyle}>
