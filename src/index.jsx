@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 import { store } from './_helpers';
 import { App } from './App';
 
-// setup fake backend
-// import { configureFakeBackend } from './_helpers';
-// configureFakeBackend();
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+
+const persistor = persistStore(store);
 
 render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('app')
 );

@@ -41,7 +41,9 @@ function UpdateForm(props) {
 
   useEffect(() => {
     if (props.toggleState) {
-      if (!!address) setInputs(address);
+      if (!!address) {
+        setInputs(address);
+      }
     }
   }, [])
 
