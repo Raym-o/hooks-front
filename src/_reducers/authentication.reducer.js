@@ -31,6 +31,18 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.UPDATE_ADDRESS_FAILURE:
       return {};
+    case userConstants.UPDATE_REQUEST:
+      return {
+        userUpdating: true,
+        user: action.user
+      };
+    case userConstants.UPDATE_SUCCESS:
+      return {
+        userUpdated: true,
+        user: action.user
+      };
+    case userConstants.UPDATE_FAILURE:
+      return {};
     default:
       return state
   }
