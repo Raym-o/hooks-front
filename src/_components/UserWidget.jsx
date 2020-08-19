@@ -36,7 +36,7 @@ function UserWidget() {
         onClick={toggleUserMenu}
       >
         <UserIcon />
-        {user ? user.username : "Login"}
+        {user ? user.username : ""}
       </button>
       {showMenu &&
         <div className="btn-group">
