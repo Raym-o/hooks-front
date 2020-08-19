@@ -14,7 +14,6 @@ function UpdateForm(props) {
     province_id: ''
   });
   const [submitted, setSubmitted] = useState(false);
-  // const line_1 = ''; const line_2 = ''; const city = ''; const postal_code = ''; const province_id = '';
 
   const { line_1, line_2, city, postal_code, province_id } = inputs;
   const address = props.user.address;
