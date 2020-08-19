@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { productActions } from '../_actions';
 
 function ProductsPage() {
   const products = useSelector(state => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatchEvent(productActions.getAll())
+    dispatch(productActions.getAll())
   })
 
   return (
