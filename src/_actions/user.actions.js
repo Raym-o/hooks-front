@@ -102,8 +102,8 @@ function update(user) {
 
     userService.update(user)
       .then(
-        user => {
-          dispatch(success());
+        newUser => {
+          dispatch(success(newUser));
           history.push('/profile');
           dispatch(alertActions.success('Profile updated'));
         },
