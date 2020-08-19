@@ -12,6 +12,7 @@ import { RegisterPage } from '../RegisterPage';
 import { NavigationBar } from '../NavigationBar';
 import { LandingPage } from '../LandingPage';
 import { ProfilePage } from '../ProfilePage';
+import { ProductsPage } from '../ProductsPage';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -41,6 +42,7 @@ function App() {
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
+                <Route path="/products" component={ProductsPage} />
                 <Redirect from="*" to="/" />
               </Switch>
             </div>
