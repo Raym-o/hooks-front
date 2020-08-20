@@ -7,19 +7,17 @@ export const productService = {
   getBySimpleSearch
 };
 
-function getAll() {
+function getAll(offset) {
   const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
+    method: 'GET'
   };
 
-  return fetch(`${config.apiUrl}/products`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/products?offset=${offset}`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
   const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
+    method: 'GET'
   };
 
   return fetch(`${config.apiUrl}/products/${id}`, requestOptions).then(handleResponse);
@@ -27,13 +25,18 @@ function getById(id) {
 
 function getBySimpleSearch(params) {
   const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
+    method: 'GET'
   };
 
   return fetch(`${config.apiUrl}/search/${params}`, requestOptions).then(handleResponse);
 }
 
+function getProductCount() {
+  const requestOptions = {
+    method: 'GET'
+  }
+  return fetch(`${config.apiUrl}/productcount`, requestOptions).then(handleResponse);
+}
 
 function handleResponse(response) {
   return response.text().then(text => {

@@ -3,7 +3,9 @@ import { productService } from '../_services';
 
 export const productActions = {
   getById,
-  getAll
+  getAll,
+  setOffSet,
+  getProductCount
 };
 
 function getById() {
@@ -22,11 +24,11 @@ function getById() {
   function failure(error) { return { type: productConstants.PRODUCTS_GET_FAILURE, error } }
 }
 
-function getAll() {
+function getAll(offset = "0") {
   return dispatch => {
     dispatch(request());
 
-    productService.getAll()
+    productService.getAll(offset)
       .then(
         products => dispatch(success(products)),
         error => dispatch(failure(error.toString()))
@@ -36,4 +38,12 @@ function getAll() {
   function request() { return { type: productConstants.PRODUCTS_GETALL_REQUEST } }
   function success(products) { return { type: productConstants.PRODUCTS_GETALL_SUCCESS, products } }
   function failure(error) { return { type: productConstants.PRODUCTS_GETALL_FAILURE, error } }
+}
+
+function setOffSet(offset) {
+  return { type: productConstants.PRODUCTS_OFFSET_SET, offset }
+}
+
+function getProductCount() {
+  return { type: productConstants.PRODUCTS_PAGECOUNT_SET, productCount }
 }
