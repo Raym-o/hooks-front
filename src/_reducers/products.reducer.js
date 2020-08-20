@@ -2,6 +2,22 @@ import { productConstants } from '../_constants';
 
 export function products(state = {}, action) {
   switch (action.type) {
+    case productConstants.PRODUCTS_PAGECOUNT_SET_REQUEST:
+      return {
+        ...state,
+        fetchingCount: true
+      };
+    case productConstants.PRODUCTS_PAGECOUNT_SET_SUCCESS:
+      return {
+        ...state,
+        fetchingCount: false,
+        productCount: action.productCount.count
+      };
+    case productConstants.PRODUCTS_PAGECOUNT_SET_FAILURE:
+      return {
+        ...state,
+        countError: true
+      };
     case productConstants.PRODUCTS_OFFSET_SET:
       return {
         ...state,
