@@ -8,12 +8,22 @@ export function products(state = {}, action) {
       };
     case productConstants.PRODUCTS_GETALL_SUCCESS:
       return {
-        items: action.users
+        items: action.products
       };
     case productConstants.PRODUCTS_GETALL_FAILURE:
       return {
         error: action.error
       };
+    case productConstants.PRODUCTS_GET_REQUEST:
+      return {
+
+      };
+
+    case productConstants.PRODUCTS_GET_SUCCESS:
+      return {};
+
+    case productConstants.PRODUCTS_GET_FAILURE:
+      return {};
 
     default:
       return state
