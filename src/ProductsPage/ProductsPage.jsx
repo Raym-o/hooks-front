@@ -9,7 +9,7 @@ function ProductsPage() {
 
   useEffect(() => {
     dispatch(productActions.getAll())
-  })
+  }, [])
 
   return (
     <div>Products Page</div>
