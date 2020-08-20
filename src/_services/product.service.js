@@ -1,10 +1,10 @@
 import config from 'config';
-import { authHeader } from '../_helpers';
 
 export const productService = {
   getAll,
   getById,
-  getBySimpleSearch
+  getBySimpleSearch,
+  getProductCount
 };
 
 function getAll(offset) {
