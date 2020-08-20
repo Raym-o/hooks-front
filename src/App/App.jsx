@@ -17,6 +17,7 @@ import { ProductsPage } from '../ProductsPage';
 function App() {
   const alert = useSelector(state => state.alert);
   const offset = useSelector(state => state.products.offset)
+  const count = useSelector(state => state.products.count)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
       // clear alert on location change
       dispatch(alertActions.clear());
       dispatch(productActions.setOffSet(offset ? offset : "0"));
+      dispatch(productActions.getProductCount());
 
     });
   }, []);
