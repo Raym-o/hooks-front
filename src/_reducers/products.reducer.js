@@ -32,8 +32,9 @@ export function products(state = {}, action) {
       return {
         ...state,
         loading: false,
-        offset: state.offset,
-        items: action.products
+        offset: action.offset,
+        items: action.products,
+        error: null
       };
     case productConstants.PRODUCTS_GETALL_FAILURE:
       return {

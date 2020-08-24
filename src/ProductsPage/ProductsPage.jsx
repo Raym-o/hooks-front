@@ -3,37 +3,42 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { productActions } from '../_actions';
 
+import { Pagination } from '../_components';
+
 function ProductsPage() {
   const products = useSelector(state => state.products);
   const dispatch = useDispatch();
 
-  const { items, productCount } = products;
+  const { items, productCount, offset } = products;
 
-  const pageCount = getPages(productCount);
-
-  function getPages(productCount) {
-    const remainder = productCount % 10;
-    const extraPage = remainder > 0 ? 1 : 0;
-    const totalPages = ((productCount - remainder) / 10) + extraPage;
-    return totalPages;
-  }
-  console.log(items);
   useEffect(() => {
-    dispatch(productActions.getAll())
+    dispatch(productActions.getAll(offset))
   }, [])
 
+  let returnedVal = <p></p>;
+  if (items) {
+    console.log(productCount);
+    console.log(offset);
+    returnedVal =
+      <div>
+        <div>Products Page</div>
+        <div>
+          {items.map(item => {
+            return (
+              <p key={item.id}>{item.title}</p>
+            )
+          })}
+        </div>
+      </div>;
+  }
   return (
     <div>
-      <div>Products Page</div>
-      <div>
-        {items.map(item => {
-          return (
-            <p>{item.title}</p>
-          )
-        })}
-      </div>
+      {returnedVal}
+      <Pagination
+        productCount={productCount}
+        offset={offset}
+      />
     </div>
-
   );
 }
 

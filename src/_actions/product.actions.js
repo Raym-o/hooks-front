@@ -30,13 +30,13 @@ function getAll(offset = "0") {
 
     productService.getAll(offset)
       .then(
-        products => dispatch(success(products)),
+        products => dispatch(success(products, offset)),
         error => dispatch(failure(error.toString()))
       );
   };
 
   function request() { return { type: productConstants.PRODUCTS_GETALL_REQUEST } }
-  function success(products) { return { type: productConstants.PRODUCTS_GETALL_SUCCESS, products } }
+  function success(products, offset) { return { type: productConstants.PRODUCTS_GETALL_SUCCESS, products, offset } }
   function failure(error) { return { type: productConstants.PRODUCTS_GETALL_FAILURE, error } }
 }
 
