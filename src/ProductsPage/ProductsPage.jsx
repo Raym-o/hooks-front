@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { productActions } from '../_actions';
 
-import { Pagination } from '../_components';
+import { ProductCard, Pagination } from '../_components';
 
 function ProductsPage() {
   const products = useSelector(state => state.products);
   const dispatch = useDispatch();
-
+  // console.log('products begin'); console.log(products); console.log('products');
   const { items, productCount, offset } = products;
 
   useEffect(() => {
@@ -19,11 +19,10 @@ function ProductsPage() {
   if (items) {
     returnedVal =
       <div>
-        <div>Products Page</div>
-        <div>
+        <div className="card-deck">
           {items.map(item => {
             return (
-              <p key={item.id}>{item.title}</p>
+              <ProductCard key={item.id} productDetails={item} />
             )
           })}
         </div>
