@@ -27,59 +27,51 @@ export const Pagination = ({ productCount, offset }) => {
     tabCountArray.push(i);
   }
 
-  let tabStyles = ["", "", ""];
+  function handleDownClick(event, offset) {
+    offset > 0 ?
+      dispatch(productActions.getAll(((event.target.id - 1) * 10).toString())) :
+      null;
+  }
+  function handleUpClick(event, paginationIndex, pageCount) {
+    paginationIndex < pageCount ?
+      dispatch(productActions.getAll(((event.target.id - 1) * 10).toString())) :
+      null;
 
-  let disabledButton = paginationIndex > 1 ? "" : "disabled";
+  }
 
-  console.log(paginationIndex)
+  const disabledOnMin = offset === "0" ? "disabled" : "";
+  const disabledOnMax = paginationIndex >= pageCount ? "disabled" : "";
+
+
   if (offset) {
 
     return (
       <div>
         <nav aria-label="...">
           <ul className="pagination">
-            <li className="page-item">
+            <li className={`page-item ${disabledOnMin}`}>
               <Link
                 id={Number(tabCountArray[0]) - 1}
-                className={`page-link ${disabledButton}`}
+                className={`page-link `}
                 to="/products"
-                onClick={(event) => dispatch(productActions.getAll(((event.target.id - 1) * 10).toString()))}
+                // onClick={(event) => dispatch(productActions.getAll(((event.target.id - 1) * 10).toString()))}
+                onClick={(event) => handleDownClick(event, offset)}
               >
                 Previous
             </Link>
             </li>
-            {tabCountArray.map((tab) => {
-              let isActiveTab = "";
+            <li className="page-item" id="1010">
+              <p className="page-link"> Page {Number(paginationIndex)} of {pageCount} </p>
+            </li>
 
-              if (tab == paginationIndex) {
-                isActiveTab = "active"
-              }
-
-              return (
-                <li key={tab} id={tab} className={`page-item ${isActiveTab}`}>
-                  <Link
-                    id={tab}
-                    className="page-link"
-                    to="/products"
-                    onClick={(event) => dispatch(productActions.getAll(((event.target.id - 1) * 10).toString()))}
-                  >
-                    {tab}
-                  </Link>
-                </li>
-              );
-            })}
-
-            {/* <li className="page-item active" aria-current="page">
-              <a className="page-link" href="#">2 <span className="sr-only">(current)</span></a>
-            </li> */}
-
-            <li className="page-item" id={tabCountArray[tabCountArray.length - 1] + 1}>
+            <li className={`page-item ${disabledOnMax}`}
+              id={tabCountArray[tabCountArray.length - 1] + 1}>
               <Link
                 id={Number(tabCountArray[0]) + 1}
                 className="page-link"
                 to="/products"
 
-                onClick={(event) => dispatch(productActions.getAll(((event.target.id - 1) * 10).toString()))}
+                onClick={(event) => handleUpClick(event, paginationIndex, pageCount)}
               >
                 Next
             </Link>

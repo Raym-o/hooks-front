@@ -17,8 +17,6 @@ function ProductsPage() {
 
   let returnedVal = <p></p>;
   if (items) {
-    console.log(productCount);
-    console.log(offset);
     returnedVal =
       <div>
         <div>Products Page</div>
