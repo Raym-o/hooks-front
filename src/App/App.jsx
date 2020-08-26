@@ -36,7 +36,7 @@ function App() {
         <NavigationBar />
         <div className="jumbotron">
           <div className="container">
-            <div className="col-md-8 offset-md-2">
+            <div>
               {alert.message &&
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
               }
