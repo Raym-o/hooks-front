@@ -16,9 +16,9 @@ export const RowContainer = ({ arrayOfProducts }) => {
 
   return (
     <div>
-      {arrayOfArrays.map(ary => {
+      {arrayOfArrays.map((ary, idx) => {
         return (
-          <CardRow productsArray={ary} />
+          <CardRow key={idx} productsArray={ary} />
         )
       })}
     </div>

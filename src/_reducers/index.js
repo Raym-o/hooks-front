@@ -6,14 +6,15 @@ import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 
 import { products } from './products.reducer';
-
+import { cart } from './cart.reducer'
 
 const rootReducer = combineReducers({
   authentication,
   registration,
   users,
   alert,
-  products
+  products,
+  cart
 });
 
 export default rootReducer;

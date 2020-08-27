@@ -42,15 +42,29 @@ export function products(state = {}, action) {
       };
     case productConstants.PRODUCTS_GET_REQUEST:
       return {
-
+        // not implemented yet
       };
 
     case productConstants.PRODUCTS_GET_SUCCESS:
-      return {};
+      return {
+        // not implemented yet
+      };
 
     case productConstants.PRODUCTS_GET_FAILURE:
-      return {};
+      return {
+        // not implemented yet
+      };
 
+    case productConstants.PRODUCTS_STATE_SET_SINGLE:
+      return {
+        ...state,
+        singleProductId: action.singleProductId
+      };
+    case productConstants.PRODUCTS_STATE_CLEAR_SINGLE:
+      return {
+        ...state,
+        singleProductId: null
+      };
     default:
       return state
   }
