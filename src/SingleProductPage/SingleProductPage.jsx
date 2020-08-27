@@ -1,8 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { cartActions, productActions } from '../_actions';
 
 function SingleProductPage({ productDetails }) {
   const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
   const product = productDetails.product;
   const imagesUrls = productDetails.images_urls;
 
@@ -21,9 +24,17 @@ function SingleProductPage({ productDetails }) {
 
   function handleAddToCartClick() {
 
+
+    dispatch(cartActions.updateCart(product));
   }
 
+  function handleRemoveClick() {
+    dispatch(cartActions.removeProduct(product.id));
+  }
+
+
   if (product) {
+    console.log('cart'); console.log(cart); console.log('cart');
     return (
       <div className="card">
         <div className="col-md-auto">
@@ -33,6 +44,7 @@ function SingleProductPage({ productDetails }) {
             <p>{product.description}</p>
             <p>$ {Number(product.price).toFixed(2)}</p>
             <button onClick={handleAddToCartClick} >Add to Cart</button>
+            <button onClick={handleRemoveClick} >Remove from Cart</button>
           </div>
         </div >
       </div>
