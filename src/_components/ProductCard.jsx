@@ -3,40 +3,40 @@ import React from 'react';
 import config from 'config';
 
 
-function prepUrl(rawString) {
-  rawString = rawString.toString().replace('https--', 'http://localhost:3000');
-  rawString = rawString.replaceAll('-', '/');
-  return rawString;
-}
-
-
 export const ProductCard = ({ productDetails }) => {
 
   const product = productDetails.product;
   const imagesUrls = productDetails.images_urls;
 
-  if (imagesUrls) {
-    console.log("PRODUCT");
-    console.log(imagesUrls[0]);
-    console.log("PRODUCTENDdddd");
-  } else {
-    console.log("not loaded blobs yet");
+  const cardStyle = {
+    paddingTop: 5
+  };
+
+  const btnStyle = {
+    position: "relative",
+    float: "right",
+    marginBottom: "5px"
+  };
+
+  const titleStyle = {
+    minHeight: '8em'
   }
 
   if (product) {
     return (
-      <div className="card" style={{ "height": "50rem", "display": "inline-block" }}>
-        <img src={imagesUrls[0]} className="card-img-top" alt={product.title} />
-        <div className="card-body">
-          <h5 className="card-title">{product.title}</h5>
-          <p className="card-text">{product.description}</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
-        </div>
-      </div >
+      <div className="card" style={cardStyle}>
+        <div className="col-md-auto">
+          <img src={imagesUrls[0] ? imagesUrls[0] : 'public/default_jtg_image.jpeg'} className="card-img-top" alt={product.title} />
+          <div className="card-body">
+            <h6 style={titleStyle} className="card-title">{product.title}</h6>
+            <a href="#" style={btnStyle} className="btn btn-light">VIEW</a>
+          </div>
+        </div >
+      </div>
     )
   }
   else {
-    return <p></p>
+    return <p key={key}></p>
   }
 };
 
