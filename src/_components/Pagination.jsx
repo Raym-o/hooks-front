@@ -60,8 +60,8 @@ export const Pagination = ({ productCount, offset }) => {
                 Previous
             </Link>
             </li>
-            <li className="page-item" id="1010">
-              <p className="page-link"> Page {Number(paginationIndex)} of {pageCount} </p>
+            <li className="page-item disabled" id="1010">
+              <p className="page-link">{Number(paginationIndex)} of {pageCount} </p>
             </li>
 
             <li className={`page-item ${disabledOnMax}`}
