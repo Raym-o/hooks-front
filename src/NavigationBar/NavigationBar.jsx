@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import banner from '../../public/images/banner.jpg';
 
 import { UserWidget } from '../_components';
+import CartIcon from '../../public/Icons/CartIcon';
+
 
 const listStyle = {
   marginBottom: "0px"
@@ -29,7 +31,8 @@ function NavigationBar() {
       </div>
       <ul className="nav nav-tabs" style={listStyle}>
         <Link className="nav-link" to="/">Landing</Link>
-        {user && <Link to="/profile">Profile</Link>}
+        <Link className="nav-link" to="/products" >Products</Link>
+        <Link className="nav-link" to="/cart" >Cart</Link>
       </ul>
     </div>
   );
