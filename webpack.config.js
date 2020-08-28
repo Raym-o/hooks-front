@@ -35,7 +35,8 @@ module.exports = {
   externals: {
     // global app config object
     config: JSON.stringify({
-      apiUrl: 'http://localhost:3000'
+      apiUrl: 'http://localhost:3000',
+      defaultImagePath: 'public/default_jtg_image.jpeg'
     })
   }
 }
