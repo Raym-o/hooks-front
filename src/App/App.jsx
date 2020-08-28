@@ -11,6 +11,7 @@ import { RegisterPage } from '../RegisterPage';
 import { LandingPage } from '../LandingPage';
 import { ProfilePage } from '../ProfilePage';
 import { ProductsPage } from '../ProductsPage';
+import { CartPage } from '../CartPage';
 
 import { NavigationBar } from '../NavigationBar';
 
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/products" component={ProductsPage} />
+                <Route path="/cart" component={CartPage} />
                 <Redirect from="*" to="/" />
               </Switch>
             </div>
