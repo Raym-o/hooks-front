@@ -2,53 +2,54 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cartActions } from '../_actions';
+import { configureFakeBackend } from '../_helpers';
+
+import config from 'config';
+
+const imageStyle = { width: "5rem" }
 
 
-function CartPage() {
+function ProductCard({ cartItem }) {
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart);
-  const items = useSelector(state => state.products.items);
-
-  const itemsFromCartWithImages = items.map(item => {
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].id == item.product.id) {
-        return item;
-      }
-    }
-  }).filter(el => el !== undefined);
-
-  const imageStyle = { width: "5rem" }
 
   function handleRemoveClick(event) {
     event.preventDefault();
-    // alert(event.target.id);
     dispatch(cartActions.removeProduct(event.target.id));
   }
+
+  return (
+    <div className="row" >
+      <div className="col-md-auto">
+        <img
+          src={cartItem.images_urls[0] ? cartItem.images_urls[0] : config.defaultImagePath}
+          style={imageStyle}
+        />
+      </div>
+      <div className="col-sm-1">
+        <button
+          id={cartItem.product.id}
+          className="btn"
+          onClick={(event) => handleRemoveClick(event)}
+        >X</button>
+      </div>
+      <div className="col"> <p>{cartItem.product.title} </p></div>
+      <div className="col-md-auto"> <p>{Number(cartItem.product.price).toFixed(2)} </p></div>
+
+    </div>
+  )
+}
+
+
+function CartPage() {
+  const cart = useSelector(state => state.cart);
 
   {
     if (cart.length > 0) {
       return (
         <div className="container">
-          {itemsFromCartWithImages.map(p => {
+          {cart.map(p => {
             return (
-              <div className="row" key={p.product.id}>
-                <div className="col-md-auto">
-                  <img
-                    src={p.images_urls[0]}
-                    style={imageStyle}
-                  />
-                </div>
-                <div className="col-sm-1">
-                  <button
-                    id={p.product.id}
-                    className="btn"
-                    onClick={(event) => handleRemoveClick(event)}
-                  >X</button>
-                </div>
-                <div className="col"> <p>{p.product.title} </p></div>
-                <div className="col-md-auto"> <p>{Number(p.product.price).toFixed(2)} </p></div>
-
-              </div>
+              <ProductCard key={p.product.id} cartItem={p} />
             )
           })}
           <div className="row">
