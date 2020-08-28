@@ -5,7 +5,8 @@ export const productActions = {
   getById,
   getAll,
   setOffSet,
-  getProductCount
+  getProductCount,
+  setSingleProduct
 };
 
 function getById() {
@@ -58,3 +59,12 @@ function getProductCount() {
   function success(productCount) { return { type: productConstants.PRODUCTS_PAGECOUNT_SET_SUCCESS, productCount } }
   function failure(error) { return { type: productConstants.PRODUCTS_PAGECOUNT_SET_FAILURE, error } }
 }
+
+function setSingleProduct(id) {
+  return { type: productConstants.PRODUCTS_STATE_SET_SINGLE, singleProductId: id }
+}
+
+
+
+
+
