@@ -18,7 +18,7 @@ export function cart(state = initialState, action) {
       };
     case cartConstants.REMOVE_PRODUCT:
       return [
-        ...state.filter(p => p.id !== action.id)
+        ...state.filter(p => Number(p.id) !== Number(action.id))
       ];
     default:
       return state
