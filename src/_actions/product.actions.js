@@ -42,7 +42,7 @@ function getAll(offset = "0") {
 }
 
 function setOffSet(offset) {
-  return { type: productConstants.PRODUCTS_OFFSET_SET_SINGLE, offset }
+  return { type: productConstants.PRODUCTS_OFFSET_SET, offset }
 }
 
 function getProductCount() {
