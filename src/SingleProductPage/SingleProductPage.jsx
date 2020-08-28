@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { cartActions, productActions } from '../_actions';
 
+import config from 'config';
+
 function SingleProductPage({ productDetails }) {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
@@ -18,12 +20,12 @@ function SingleProductPage({ productDetails }) {
   // }
 
   const imageStyle = {
-    width: '50%',
+    width: '75%',
     paddingTop: '.4rem'
   };
 
   function handleAddToCartClick() {
-    dispatch(cartActions.updateCart(product));
+    dispatch(cartActions.updateCart(productDetails));
   }
 
   function handleRemoveClick() {
@@ -31,14 +33,13 @@ function SingleProductPage({ productDetails }) {
   }
 
   if (product) {
-    console.log('cart'); console.log(cart); console.log('cart');
     return (
       <div className="card">
         <div className="col-md-auto">
           <div className="card-body">
             <div className="container">
               <div className="row">
-                <div className="col-lg-4"><img style={imageStyle} src={imagesUrls[0] ? imagesUrls[0] : 'public/default_jtg_image.jpeg'} className="card-img-top" alt={product.title} /></div>
+                <div className="col-lg-4"><img style={imageStyle} src={imagesUrls[0] ? imagesUrls[0] : config.defaultImagePath} className="card-img-top" alt={product.title} /></div>
                 <div className="col-lg-6">
                   <div className="row">
                     <h2 className="card-title">{product.title}</h2>
