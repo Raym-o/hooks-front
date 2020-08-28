@@ -17,9 +17,19 @@ export function cart(state = initialState, action) {
         return state;
       };
     case cartConstants.REMOVE_PRODUCT:
-      return [
-        ...state.filter(p => Number(p.id) !== Number(action.id))
-      ];
+      let tempState = [...state];
+
+      let returnArray = tempState.map((prod, index) => {
+        if (prod === null) { return undefined; }
+
+        let { product, images_urls } = prod;
+        if (Number(product.id) !== Number(action.id)) {
+          return prod;
+        }
+      }).filter(entry => entry !== undefined);
+
+      return returnArray;
+
     default:
       return state
   }
