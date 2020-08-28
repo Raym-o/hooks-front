@@ -18,13 +18,11 @@ function SingleProductPage({ productDetails }) {
   // }
 
   const imageStyle = {
-    width: '25%',
+    width: '50%',
     paddingTop: '.4rem'
   };
 
   function handleAddToCartClick() {
-
-
     dispatch(cartActions.updateCart(product));
   }
 
@@ -32,26 +30,39 @@ function SingleProductPage({ productDetails }) {
     dispatch(cartActions.removeProduct(product.id));
   }
 
-
   if (product) {
     console.log('cart'); console.log(cart); console.log('cart');
     return (
       <div className="card">
         <div className="col-md-auto">
-          <img style={imageStyle} src={imagesUrls[0] ? imagesUrls[0] : 'public/default_jtg_image.jpeg'} className="card-img-top" alt={product.title} />
           <div className="card-body">
-            <h2 className="card-title">{product.title}</h2>
-            <p>{product.description}</p>
-            <p>$ {Number(product.price).toFixed(2)}</p>
-            <button onClick={handleAddToCartClick} >Add to Cart</button>
-            <button onClick={handleRemoveClick} >Remove from Cart</button>
-          </div>
-        </div >
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-4"><img style={imageStyle} src={imagesUrls[0] ? imagesUrls[0] : 'public/default_jtg_image.jpeg'} className="card-img-top" alt={product.title} /></div>
+                <div className="col-lg-6">
+                  <div className="row">
+                    <h2 className="card-title">{product.title}</h2>
+                  </div>
+                  <div className="row">
+                    <p>$ {Number(product.price).toFixed(2)}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <p>{product.description ? product.description : product.title}</p>
+              </div>
+              <div className="row">
+                <button onClick={handleAddToCartClick} >Add to Cart</button>
+                <button onClick={handleRemoveClick} >Remove from Cart</button>
+              </div>
+            </div>
+          </div >
+        </div>
       </div>
     )
   }
   else {
-    return <p></p>
+    return <p></p>;
   }
 }
 export { SingleProductPage };
