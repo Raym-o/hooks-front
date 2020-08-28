@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { productConstants } from '../_constants'
+import { productConstants } from '../_constants';
+import { productActions } from '../_actions';
 
 const cardStyle = {
   paddingTop: 5
@@ -21,8 +22,8 @@ export const ProductCard = ({ productDetails }) => {
   const product = productDetails.product;
   const imagesUrls = productDetails.images_urls;
 
-  const handleButtonClick = (event, value = event.target.id) => {
-    dispatch({ type: productConstants.PRODUCTS_STATE_SET_SINGLE, singleProductId: value })
+  const handleButtonClick = (event) => {
+    dispatch(productActions.setSingleProduct(event.target.id));
   }
 
 
