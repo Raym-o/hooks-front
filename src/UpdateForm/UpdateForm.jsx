@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { userActions } from '../_actions';
+import { userActions, productActions } from '../_actions';
 
 
 function UpdateForm(props) {
@@ -17,6 +17,7 @@ function UpdateForm(props) {
 
   const { line_1, line_2, city, postal_code, province_id } = inputs;
   const address = props.user.address;
+  const provinces = props.provinces;
 
   function formFieldChangeHandler(e) {
     const { name, value } = e.target;
@@ -46,7 +47,6 @@ function UpdateForm(props) {
     }
   }, [])
 
-
   return (
 
     <div className="col-lg-8 offset-lg-2">
@@ -75,7 +75,18 @@ function UpdateForm(props) {
         </div>
         <div className="form-group">
           <label htmlFor="province_id">Province</label>
-          <input type="text" className={'form-control' + (submitted && !province_id ? ' is-invalid' : '')} name="province_id" value={province_id ? province_id : ''} onChange={formFieldChangeHandler} id="province_id" />
+          <select className={'form-control' + (submitted && !province_id ? ' is-invalid' : '')} name="province_id" value={province_id ? province_id : ''} onChange={formFieldChangeHandler} id="province_id">
+            <option id="0">Select</option>
+            {provinces.map(province => {
+              return (
+                <option
+                  id={province.id}
+                  key={province.id}
+                  value={province.id}
+                >{province.name}</option>
+              )
+            })}
+          </select>
           {submitted && (!province_id || province_id === '') &&
             <div className="invalid-feedback">Province is required</div>
           }
