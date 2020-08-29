@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cartActions } from '../_actions';
-import { configureFakeBackend } from '../_helpers';
 
 import config from 'config';
 

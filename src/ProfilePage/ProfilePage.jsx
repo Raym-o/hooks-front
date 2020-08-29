@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { UserUpdateForm } from '../UserUpdateForm';
 import { UpdateForm } from '../UpdateForm';
 
+import { provinceActions } from '../_actions';
+
 function ProfilePage() {
+  const dispatch = useDispatch();
   const [editingUser, setEditingUser] = useState(false);
   const [editingAddress, setEditingAddress] = useState(false);
   const user = useSelector(state => state.authentication.user);
+  const provinces = useSelector(state => state.provinces);
+  const userProvince =
+    provinces.filter(province => province.id == user.address.province_id);
+
+  console.log('userProvince'); console.log(userProvince); console.log('userProvince');
 
   function toggleEditingUser() {
     setEditingUser(!editingUser);
@@ -17,6 +25,11 @@ function ProfilePage() {
     setEditingAddress(!editingAddress);
   }
 
+  useEffect(() => {
+    // if (!provinces) {
+    dispatch(provinceActions.getAllProvinces());
+    // }
+  }, [])
 
   return (
     <div className="container">
@@ -51,11 +64,16 @@ function ProfilePage() {
           <li>Line 2: {user.address.line_2}</li>
           <li>City: {user.address.city}</li>
           <li>Postal Code: {user.address.postal_code}</li>
-          <li>Province: {user.address.province_id}</li>
+          <li>Province: {userProvince[0] && userProvince[0].name}</li>
         </ul>
         :
         user && editingAddress ?
-          <UpdateForm toggle={toggleEditingAddress} user={user} toggleState={editingAddress} />
+          <UpdateForm
+            toggle={toggleEditingAddress}
+            user={user}
+            toggleState={editingAddress}
+            provinces={provinces}
+          />
           :
           <p>No Address Currently Listed</p>
       }
