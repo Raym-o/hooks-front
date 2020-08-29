@@ -7,6 +7,8 @@ import { alert } from './alert.reducer';
 
 import { products } from './products.reducer';
 import { cart } from './cart.reducer'
+import { provinces } from './province.reducer';
+
 
 const rootReducer = combineReducers({
   authentication,
@@ -14,7 +16,8 @@ const rootReducer = combineReducers({
   users,
   alert,
   products,
-  cart
+  cart,
+  provinces
 });
 
 export default rootReducer;
