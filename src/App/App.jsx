@@ -12,6 +12,7 @@ import { LandingPage } from '../LandingPage';
 import { ProfilePage } from '../ProfilePage';
 import { ProductsPage } from '../ProductsPage';
 import { CartPage } from '../CartPage';
+import { CheckoutPage } from '../CheckoutPage';
 
 import { NavigationBar } from '../NavigationBar';
 
@@ -46,6 +47,8 @@ function App() {
                 <Route exact path="/" component={LandingPage} />
                 {/* <PrivateRoute exact path="/" component={HomePage} /> */}
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
+                <PrivateRoute path="/checkout" component={CheckoutPage} />
+
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/products" component={ProductsPage} />
