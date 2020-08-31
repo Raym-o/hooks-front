@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import parse from 'html-react-parser';
 
 import { cartActions, productActions } from '../_actions';
 
@@ -50,7 +51,7 @@ function SingleProductPage({ productDetails }) {
                 </div>
               </div>
               <div className="row">
-                <p>{product.description ? product.description : product.title}</p>
+                <p>{product.description ? parse(product.description) : product.title}</p>
               </div>
               <div className="row">
                 <button onClick={handleAddToCartClick} >Add to Cart</button>
