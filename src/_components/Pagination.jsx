@@ -81,7 +81,7 @@ export const Pagination = ({ productCount, offset }) => {
       </div>
     )
   } else {
-    return (<p hidden="true"></p>)
+    return (<p hidden={true}></p>)
   }
 }
 

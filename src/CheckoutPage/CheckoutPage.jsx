@@ -11,7 +11,6 @@ const imageStyle = { width: "5rem" }
 
 function ProductCard({ cartItem }) {
   const dispatch = useDispatch();
-
   function handleRemoveClick(event) {
     event.preventDefault();
     dispatch(cartActions.removeProduct(event.target.id));
@@ -43,12 +42,14 @@ function ProductCard({ cartItem }) {
 function CheckoutPage() {
   const cart = useSelector(state => state.cart);
   const user = useSelector(state => state.authentication.user);
-
+  const provinces = useSelector(state => state.provinces);
   const { id, f_name, l_name, username, email, updated_at, address } = user;
+
+  const userProvince = provinces.filter(province => province.id === address.province_id);
 
   {/* city, created_at, id, line_1, line_2, 
               postal_code, province_id, updated_at, user_id */}
-  console.log('user'); console.log(user); console.log('user');
+  console.log('user'); console.log(userProvince); console.log('user');
   const totalPreTaxes = cart.length > 0 ? cart.map(nestedProduct => {
     const { product } = nestedProduct;
     return Number(product.price);
@@ -127,6 +128,10 @@ function CheckoutPage() {
                 <div className="row">
                   {/* <p className="col"></p> */}
                   <span className="col" >{address.city}</span>
+                </div>
+                <div className="row">
+                  {/* <p className="col"></p> */}
+                  <span className="col" >{userProvince[0].name}</span>
                 </div>
                 <div className="row">
                   {/* <p className="col"></p> */}
