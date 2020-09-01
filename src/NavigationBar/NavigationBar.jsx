@@ -22,18 +22,34 @@ function NavigationBar() {
         backgroundSize: 'cover'
       }}>
       <div className="container">
-        <div className="d-inline p-2">
-          <h1>Raymo E-Commerce Store </h1>
-        </div>
-        <div className="d-inline p-2">
-          <UserWidget />
+        <div className="row">
+          <div className="col">
+            <h1>Raymo E-Commerce Store </h1>
+          </div>
+          <div className="col-md-auto">
+            <UserWidget />
+          </div>
         </div>
       </div>
-      <ul className="nav nav-tabs" style={listStyle}>
-        <Link className="nav-link" to="/">Landing</Link>
-        <Link className="nav-link" to="/products" >Products</Link>
-        <Link className="nav-link" to="/cart" >Cart</Link>
-      </ul>
+      <div className="row">
+        <ul className="nav nav-tabs" style={listStyle}>
+          <li>
+            <div className="col">
+              <Link className="nav-link" to="/">Landing</Link>
+            </div>
+          </li>
+          <li>
+            <div className="col">
+              <Link className="nav-link" to="/products" >Products</Link>
+            </div>
+          </li>
+          <li>
+            <div className="col">
+              <Link className="nav-link" to="/cart" >Cart</Link>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
