@@ -3,3 +3,4 @@ export * from './user.constants';
 export * from './product.constants';
 export * from './cart.constants';
 export * from './province.constants';
+export * from './checkout.constants';

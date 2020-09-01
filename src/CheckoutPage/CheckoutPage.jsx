@@ -58,7 +58,6 @@ function CheckoutPage() {
 
   }
 
-
   if (cart.length > 0) {
     return (
       <div>
