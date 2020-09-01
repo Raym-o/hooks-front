@@ -4,18 +4,18 @@ export const checkoutActions = {
   purchaseCartContents
 };
 
-function purchaseCartContents() {
+function purchaseCartContents(order, products) {
   return dispatch => {
-    dispatch(request());
+    dispatch(request({ order, products }));
 
-    checkoutService.purchaseCartContents(order)
+    checkoutService.purchaseCartContents(order, products)
       .then(
         order => dispatch(success(order)),
         error => dispatch(failure(error.toString()))
       );
   };
 
-  function request() { return { type: productConstants.PRODUCTS_GETALL_REQUEST } }
-  function success(order) { return { type: productConstants.PRODUCTS_GETALL_SUCCESS, order } }
-  function failure(error) { return { type: productConstants.PRODUCTS_GETALL_FAILURE, error } }
+  function request() { return { type: checkoutConstants.CHECKOUT_PURCHASE_REQUEST } }
+  function success(order) { return { type: checkoutConstants.CHECKOUT_PURCHASE_SUCCESS, order } }
+  function failure(error) { return { type: checkoutConstants.CHECKOUT_PURCHASE_FAILURE, error } }
 }

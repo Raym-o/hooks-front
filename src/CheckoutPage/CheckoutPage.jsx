@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../_actions';
 
 import config from 'config';
+import { checkoutActions } from '../_actions/checkout.actions';
 
 const imageStyle = { width: "5rem" }
 
@@ -54,8 +55,8 @@ function CheckoutPage() {
   const [processing, setProcessing] = useState("");
 
   function handlePurchaseClick() {
-    setProcessing("disabled");
-
+    // setProcessing("disabled");
+    // checkoutActions.purchaseCartContents()    
   }
 
   if (cart.length > 0) {
