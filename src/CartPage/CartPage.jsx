@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { cartActions } from '../_actions';
 
@@ -52,10 +53,11 @@ function CartPage() {
             )
           })}
           <div className="row">
-            <div className="col-sm-1"></div>
-            <div className="col"></div>
-            <div className="col-md-auto"><p>total</p></div>
-            <div className="col-md-auto"></div>
+            <div className="offset-10 col">
+              <button className="btn btn-primary">
+                <Link to="/checkout" >Go to Checkout</Link>
+              </button>
+            </div>
           </div>
         </div>
       )
