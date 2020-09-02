@@ -29,7 +29,8 @@ export function cart(state = initialState, action) {
       }).filter(entry => entry !== undefined);
 
       return returnArray;
-
+    case cartConstants.EMPTY_CART:
+      return [];
     default:
       return state
   }

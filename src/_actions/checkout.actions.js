@@ -1,5 +1,5 @@
 import { checkoutConstants } from '../_constants';
-import { checkoutService } from '../_services';
+import { checkoutService, cartService } from '../_services';
 
 export const checkoutActions = {
   purchaseCartContents

@@ -72,6 +72,7 @@ function CheckoutPage() {
     });
 
     dispatch(checkoutActions.purchaseCartContents(order, orderProducts));
+    dispatch(cartActions.emptyCart());
   }
 
 
