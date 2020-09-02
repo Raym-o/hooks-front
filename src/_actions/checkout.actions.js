@@ -1,4 +1,5 @@
 import { checkoutConstants } from '../_constants';
+import { checkoutService } from '../_services';
 
 export const checkoutActions = {
   purchaseCartContents
@@ -6,16 +7,16 @@ export const checkoutActions = {
 
 function purchaseCartContents(order, products) {
   return dispatch => {
-    dispatch(request({ order, products }));
+    dispatch(request(order, products));
 
     checkoutService.purchaseCartContents(order, products)
       .then(
-        order => dispatch(success(order)),
+        order => dispatch(success(order, products)),
         error => dispatch(failure(error.toString()))
       );
   };
 
-  function request() { return { type: checkoutConstants.CHECKOUT_PURCHASE_REQUEST } }
-  function success(order) { return { type: checkoutConstants.CHECKOUT_PURCHASE_SUCCESS, order } }
+  function request() { return { type: checkoutConstants.CHECKOUT_PURCHASE_REQUEST, order, products } }
+  function success(order, products) { return { type: checkoutConstants.CHECKOUT_PURCHASE_SUCCESS, order } }
   function failure(error) { return { type: checkoutConstants.CHECKOUT_PURCHASE_FAILURE, error } }
 }

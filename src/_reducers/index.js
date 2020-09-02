@@ -7,8 +7,8 @@ import { alert } from './alert.reducer';
 
 import { products } from './products.reducer';
 import { cart } from './cart.reducer'
+import { checkout } from './checkout.reducer';
 import { provinces } from './province.reducer';
-
 
 const rootReducer = combineReducers({
   authentication,
@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   alert,
   products,
   cart,
+  checkout,
   provinces
 });
 

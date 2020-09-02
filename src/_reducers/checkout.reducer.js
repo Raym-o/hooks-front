@@ -12,9 +12,7 @@ export function checkout(state = initialState, action) {
       };
     case checkoutConstants.CHECKOUT_PURCHASE_SUCCESS:
       return {
-        purchasing: false,
-        order: action.order,
-        products: action.products
+        purchasing: false
       };
     case checkoutConstants.CHECKOUT_PURCHASE_FAILURE:
       return {

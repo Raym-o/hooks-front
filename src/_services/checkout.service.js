@@ -1,14 +1,16 @@
 import config from 'config';
+import 'regenerator-runtime/runtime';
 
-export const productService = {
+
+export const checkoutService = {
   purchaseCartContents
 };
 
-async function purchaseCartContents(orderDetails) {
+async function purchaseCartContents(order, products) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(orderDetails)
+    body: JSON.stringify({ order, products })
   }
   const orderResponse = await fetch(`${config.apiUrl}/orders`, requestOptions);
   return handleResponse(orderResponse);

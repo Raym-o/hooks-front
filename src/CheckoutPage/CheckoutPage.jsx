@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../_actions';
 
 import config from 'config';
-import { checkoutActions } from '../_actions/checkout.actions';
-
+import { checkoutActions } from '../_actions';
+import { checkoutConstants } from '../_constants';
 const imageStyle = { width: "5rem" }
 
 
@@ -41,6 +41,7 @@ function ProductCard({ cartItem }) {
 
 
 function CheckoutPage() {
+  const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   const user = useSelector(state => state.authentication.user);
   const provinces = useSelector(state => state.provinces);
@@ -55,9 +56,25 @@ function CheckoutPage() {
   const [processing, setProcessing] = useState("");
 
   function handlePurchaseClick() {
-    // setProcessing("disabled");
-    // checkoutActions.purchaseCartContents()    
+    setProcessing("disabled");
+
+    const order = {
+      status: checkoutConstants.ORDER_STATUS_UNPAID,
+      price: total,
+      gst: 0.07,
+      pst: Number(userProvince[0].pst_rate),
+      hst: Number(userProvince[0].hst_rate),
+      user_id: user.id,
+    };
+
+    const orderProducts = cart.map(prodAndImages => {
+      return ({ id: prodAndImages.product.id, price: prodAndImages.product.price });
+    });
+
+    dispatch(checkoutActions.purchaseCartContents(order, orderProducts));
   }
+
+
 
   if (cart.length > 0) {
     return (
