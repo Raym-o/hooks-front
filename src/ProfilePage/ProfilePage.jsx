@@ -31,53 +31,61 @@ function ProfilePage() {
     // }
   }, [])
 
+
+
+
   return (
     <div className="container">
-      <h1>Profile</h1>
-      <button onClick={toggleEditingUser}>
-        {editingUser ?
-          "Cancel"
-          :
-          "Edit"}
-      </button>
-      {!editingUser ?
-        <ul>
-          <li>First Name: {user.f_name}</li>
-          <li>Last Name: {user.l_name}</li>
-          <li>Username: {user.username}</li>
-          <li>Email: {user.email}</li>
-        </ul>
-        :
-        <UserUpdateForm toggle={toggleEditingUser} user={user} toggleState={editingUser} />
-      }
-      <h2>Address</h2>
-      <button onClick={toggleEditingAddress}>
-        {user && user.address && !editingAddress ? "Edit"
-          :
-          user && !user.address && !editingAddress ? "Add"
-            :
+      <div className="col" >
+        <h1>Profile</h1>
+        <button onClick={toggleEditingUser}>
+          {editingUser ?
             "Cancel"
-        }</button>
-      {user && user.address && !editingAddress ?
-        <ul>
-          <li>Line 1: {user.address.line_1}</li>
-          <li>Line 2: {user.address.line_2}</li>
-          <li>City: {user.address.city}</li>
-          <li>Postal Code: {user.address.postal_code}</li>
-          <li>Province: {userProvince[0] && userProvince[0].name}</li>
-        </ul>
-        :
-        user && editingAddress ?
-          <UpdateForm
-            toggle={toggleEditingAddress}
-            user={user}
-            toggleState={editingAddress}
-            provinces={provinces}
-          />
+            :
+            "Edit"}
+        </button>
+        {!editingUser ?
+          <ul>
+            <li>First Name: {user.f_name}</li>
+            <li>Last Name: {user.l_name}</li>
+            <li>Username: {user.username}</li>
+            <li>Email: {user.email}</li>
+          </ul>
           :
-          <p>No Address Currently Listed</p>
-      }
+          <UserUpdateForm toggle={toggleEditingUser} user={user} toggleState={editingUser} />
+        }
+        <h2>Address</h2>
+        <button onClick={toggleEditingAddress}>
+          {user && user.address && !editingAddress ? "Edit"
+            :
+            user && !user.address && !editingAddress ? "Add"
+              :
+              "Cancel"
+          }</button>
+        {user && user.address && !editingAddress ?
+          <ul>
+            <li>Line 1: {user.address.line_1}</li>
+            <li>Line 2: {user.address.line_2}</li>
+            <li>City: {user.address.city}</li>
+            <li>Postal Code: {user.address.postal_code}</li>
+            <li>Province: {userProvince[0] && userProvince[0].name}</li>
+          </ul>
+          :
+          user && editingAddress ?
+            <UpdateForm
+              toggle={toggleEditingAddress}
+              user={user}
+              toggleState={editingAddress}
+              provinces={provinces}
+            />
+            :
+            <p>No Address Currently Listed</p>
+        }
 
+      </div>
+      <div className="col">
+
+      </div>
       <Link to="/">Return to Landing Page</Link>
     </div>
   );
