@@ -26,7 +26,6 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.UPDATE_ADDRESS_SUCCESS:
       return {
-        addressUpdated: true,
         user: action.user
       };
     case userConstants.UPDATE_ADDRESS_FAILURE:
@@ -38,7 +37,6 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.UPDATE_SUCCESS:
       return {
-        userUpdated: true,
         user: action.user
       };
     case userConstants.UPDATE_FAILURE:

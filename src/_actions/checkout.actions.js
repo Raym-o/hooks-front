@@ -1,5 +1,6 @@
 import { checkoutConstants } from '../_constants';
 import { checkoutService, cartService } from '../_services';
+import { alertActions } from '../_actions';
 
 export const checkoutActions = {
   purchaseCartContents
@@ -11,8 +12,14 @@ function purchaseCartContents(order, products) {
 
     checkoutService.purchaseCartContents(order, products)
       .then(
-        order => dispatch(success(order, products)),
-        error => dispatch(failure(error.toString()))
+        order => {
+          dispatch(success(order, products))
+          dispatch(alertActions.success('Purchase completed. View your orders in the Profile page.'))
+        },
+        error => {
+          dispatch(failure(error.toString()));
+          dispatch(alertActions.error(error.toString()));
+        }
       );
   };
 
