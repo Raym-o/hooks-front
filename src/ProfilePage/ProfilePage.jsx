@@ -13,6 +13,7 @@ function ProfilePage() {
   const [editingAddress, setEditingAddress] = useState(false);
   const user = useSelector(state => state.authentication.user);
   const provinces = useSelector(state => state.provinces);
+  console.log('user'); console.log(user); console.log('user');
   const userProvince =
     provinces.filter(province => province.id == user.address.province_id);
 
@@ -85,11 +86,15 @@ function ProfilePage() {
                 <div key={order.id}>
                   <ul className="goober">
                     {Object.entries(order).map(ar => {
-                      return (
-                        <li>
-                          {`${ar[0]}: ${ar[1]}`}
-                        </li>
-                      )
+                      if (Array("status", "price", "created_at").includes(ar[0])) {
+
+                        return (
+                          <li key={ar[0]}>
+                            {`${ar[0]}: ${ar[1]}`}
+                          </li>
+                        )
+                      }
+
                     })}
                   </ul>
                 </div>
