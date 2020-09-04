@@ -1,5 +1,5 @@
-# react-hooks-redux-registration-login-example
+# react-hooks-redux-ecommerce
 
-React Hooks + Redux - User Registration and Login Tutorial & Example
+React Hooks + Redux - E-commerce web app with user authentication, and other features
 
-For documentation and live demo see https://jasonwatmore.com/post/2020/03/02/react-hooks-redux-user-registration-and-login-tutorial-example
+
